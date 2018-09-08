@@ -1,5 +1,10 @@
 {
+  "bugs": "https://github.com/RichardJECooke/hexo-fbcomments/issues",
+  "description": "A plugin for Hexo that shows Facebook comments on your posts",
+  "homepage": "https://github.com/RichardJECooke/hexo-fbcomments",
+  "keywords": ["hexo","plugin","comments","facebook"],
+  "license": "MIT",
   "name": "hexo-fbcomments",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "main": "index"
 }

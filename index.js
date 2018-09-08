@@ -1,76 +1,61 @@
-/**
- * hexo-fbcomments
- *
- * Embbed facebook comments on your posts
- * Syntax: <%- fbcomments() %> on the place of the comment and <%- fbcommentshead() %> on the head of the page.
- * Set the following config on your _config.yml file (change the values to your needs):
+(function(_helper) {
+	let _config = null;
 
-# Enable facebook comments
-fbcomments:
-  enabled: true
-  lang: pt_BR
-  appId: 00000000
-  numPosts: 5
-
- */
-
-(function(helper) {
-	var config = null;
-
-	function initConfig() {
-		if (!hexo.config.fbcomments) {
-			config = { enabled: false };
+	function initConfig()
+	{
+		if (!hexo.config.fbcomments)
 			return(false);
-		}
-
-		config = hexo.config.fbcomments;
-		config.enabled = config.enabled || true;
-		if (config.enabled === false)
+		_config = hexo.config.fbcomments;
+		_config.enabled = _config.enabled || true;
+		if (!_config.enabled)
 			return(false);
-
-		config.lang = config.lang || 'en_GB';
-		config.appId = config.appId || 0;	// This option MUST be set. TODO: Raise error.
-		config.numPosts = config.numPosts || 5;
-
+		if (!_config.appId)
+			throw "Hexo-FBComments error: Facebook AppId not found. Set it in your config.yml file or uninstall hex_fbcomments, or disable it in the config.yml file."
+		_config.lang = _config.lang || 'en_GB';
+		_config.numPosts = _config.numPosts || 5;
+		_config.order_by = _config.order_by || 'time';
+		_config.colorscheme = _config.colorscheme || 'dark';
 		return(true);
 	}
 
-	function fbcommentshead() {
-		if(initConfig() === false) return("");
-
-		var tag = '<div id="fb-root"></div>';
-		tag += '<script>(function(d, s, id) {';
-		tag += 'var js, fjs = d.getElementsByTagName(s)[0];';
-		tag += 'if (d.getElementById(id)) return;';
-		tag += 'js = d.createElement(s); js.id = id;';
-		tag += 'js.src = "//connect.facebook.net/';
-		tag += config.lang; // Language
-		tag += '/sdk.js#xfbml=1&version=v2.5&appId=';
-		tag += config.appId + ';';	// AppID
-		tag += 'fjs.parentNode.insertBefore(js, fjs);';
-		tag += "}(document, 'script', 'facebook-jssdk'));</script>";
-
-		return tag;
+	function fbcommentshead()
+	{
+		if (!initConfig()) return("");
+		let html = '<div id="fb-root"></div>';
+		html += '<script>(function(d, s, id) {';
+		html += 'var js, fjs = d.getElementsByTagName(s)[0];';
+		html += 'if (d.getElementById(id)) return;';
+		html += 'js = d.createElement(s); js.id = id;';
+		html += 'js.src = "//connect.facebook.net/';
+		html += _config.lang; // language
+		html += '/sdk.js#xfbml=1&version=v3.1&appId=';
+		html += '_config.appId'; // appid
+		html += '&autoLogAppEvents=1';
+		html += '&colorscheme=';
+		html += '_config.colorscheme'; // colorscheme
+		html += '&order_by=';
+		html += '_config.order_by'; // order by
+		html += ';';
+		html += 'fjs.parentNode.insertBefore(js, fjs);';
+		html += "}(document, 'script', 'facebook-jssdk'));</script>";
+		return html;
 	}
 
-	function fbcomments(permaLink) {
-		if (config == null || config.enabled === false)
-			return("");		
-
+	function fbcomments(permaLink)
+	{
+		if (!initConfig()) return("");
 		permaLink = permaLink || "err";
-
-		var ret = '<section id="comments">';
-		ret += '<div class="fb-comments" data-href="';
-		ret += permaLink;
-		ret += '" data-numposts="';
-		ret += config.numPosts;
-		ret += '"></div>';
-		ret += '</section>';
-
+		let html = '<section id="comments">';
+		html += '<div class="fb-comments" data-href="';
+		html += permaLink;
+		html += '" data-numposts="';
+		html += _config.numPosts;
+		html += '"></div>';
+		html += '</section>';
 		return(ret);
 	}
 
-	helper.register('fbcomments', fbcomments);
-	helper.register('fbcommentshead', fbcommentshead);
+	console.log('REGISTERIG FBCOMMENTS');
+	_helper.register('fbcomments', fbcomments);
+	_helper.register('fbcommentshead', fbcommentshead);
 })(hexo.extend.helper);
-
