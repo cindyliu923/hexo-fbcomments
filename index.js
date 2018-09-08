@@ -33,7 +33,6 @@
 		html += _config.appId; // appid
 		html += '&autoLogAppEvents=1';
 		html += '&colorscheme=' + _config.colorscheme; // colorscheme
-		html += '&width=' + _config.width; // width
 		html += '&order_by=' + _config.order_by + '";\n'; // order by
 		html += 'fjs.parentNode.insertBefore(js, fjs);' + '\n';
 		html += "}(document, 'script', 'facebook-jssdk'));</script>" + '\n';

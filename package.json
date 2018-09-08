@@ -5,6 +5,6 @@
   "keywords": ["hexo","plugin","comments","facebook"],
   "license": "MIT",
   "name": "hexo-fbcomments",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index"
 }
