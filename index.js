@@ -15,29 +15,28 @@
 		_config.numPosts = _config.numPosts || 5;
 		_config.order_by = _config.order_by || 'time';
 		_config.colorscheme = _config.colorscheme || 'dark';
+		_config.width = _config.width || '550px';
 		return(true);
 	}
 
 	function fbcommentshead()
 	{
 		if (!initConfig()) return("");
-		let html = '<div id="fb-root"></div>';
-		html += '<script>(function(d, s, id) {';
-		html += 'var js, fjs = d.getElementsByTagName(s)[0];';
-		html += 'if (d.getElementById(id)) return;';
-		html += 'js = d.createElement(s); js.id = id;';
+		let html = '<div id="fb-root"></div>' + '\n';
+		html += '<script>(function(d, s, id) {' + '\n';
+		html += 'var js, fjs = d.getElementsByTagName(s)[0];' + '\n';
+		html += 'if (d.getElementById(id)) return;' + '\n';
+		html += 'js = d.createElement(s); js.id = id;' + '\n';
 		html += 'js.src = "//connect.facebook.net/';
 		html += _config.lang; // language
 		html += '/sdk.js#xfbml=1&version=v3.1&appId=';
-		html += '_config.appId'; // appid
+		html += _config.appId; // appid
 		html += '&autoLogAppEvents=1';
-		html += '&colorscheme=';
-		html += '_config.colorscheme'; // colorscheme
-		html += '&order_by=';
-		html += '_config.order_by'; // order by
-		html += ';';
-		html += 'fjs.parentNode.insertBefore(js, fjs);';
-		html += "}(document, 'script', 'facebook-jssdk'));</script>";
+		html += '&colorscheme=' + _config.colorscheme; // colorscheme
+		html += '&width=' + _config.width; // width
+		html += '&order_by=' + _config.order_by + '";\n'; // order by
+		html += 'fjs.parentNode.insertBefore(js, fjs);' + '\n';
+		html += "}(document, 'script', 'facebook-jssdk'));</script>" + '\n';
 		return html;
 	}
 
@@ -45,16 +44,16 @@
 	{
 		if (!initConfig()) return("");
 		permaLink = permaLink || "err";
-		let html = '<section id="comments">';
-		html += '<div class="fb-comments" data-href="';
+		let html = '<section id="comments">' + '\n';
+		html += '<div class="fb-comments" data-href="' + '\n';
 		html += permaLink;
 		html += '" data-numposts="';
 		html += _config.numPosts;
-		html += '"></div>';
-		html += '</section>';
-		return(ret);
+		html += '"></div>' + '\n';
+		html += '</section>' + '\n';
+		return(html);
 	}
-	
+
 	_helper.register('fbcomments', fbcomments);
 	_helper.register('fbcommentshead', fbcommentshead);
 })(hexo.extend.helper);
