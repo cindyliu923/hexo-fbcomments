@@ -54,8 +54,7 @@
 		html += '</section>';
 		return(ret);
 	}
-
-	console.log('REGISTERIG FBCOMMENTS');
+	
 	_helper.register('fbcomments', fbcomments);
 	_helper.register('fbcommentshead', fbcommentshead);
 })(hexo.extend.helper);
