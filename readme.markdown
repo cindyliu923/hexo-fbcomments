@@ -19,11 +19,12 @@ fbcomments:
 3. Add ```<%- fbcommentshead() %>``` in your theme's post header (before the body tag) and ```<%- fbcomments(page.permalink) %>``` at the bottom of the post.
 4. To style the comments add something like this in your CSS
 ```css
-  section#comments
+  section#comments {
     border-color: white;
     border: 1px 1px 1px 1px;
     border-style: solid;
     background: #dde !important;
+  }
 ```
 
 ## More
