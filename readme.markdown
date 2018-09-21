@@ -17,6 +17,14 @@ fbcomments:
   numPosts: 10 # (optional) defaults to 5
 ```
 3. Add ```<%- fbcommentshead() %>``` in your theme's post header (before the body tag) and ```<%- fbcomments(page.permalink) %>``` at the bottom of the post.
+4. To style the comments add something like this in your CSS
+```css
+  section#comments
+    border-color: white;
+    border: 1px 1px 1px 1px;
+    border-style: solid;
+    background: #dde !important;
+```
 
 ## More
 - More information about the facebook comments plugin on the [Official Documentation](https://developers.facebook.com/docs/plugins/comments)
