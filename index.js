@@ -48,6 +48,8 @@
 		html += permaLink;
 		html += '" data-numposts="';
 		html += _config.numPosts;
+		html += '" data-width="';
+		html += _config.width;
 		html += '"></div>' + '\n';
 		html += '</section>' + '\n';
 		return(html);

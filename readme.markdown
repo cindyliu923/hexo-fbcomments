@@ -15,6 +15,7 @@ fbcomments:
   lang: en_US # (optional)
   order_by: time  # (optional) time/reverse_time/social
   numPosts: 10 # (optional) defaults to 5
+  width: 66rem # (optional) defaults to 550px on desktop, 100% on mobile always
 ```
 3. Add ```<%- fbcommentshead() %>``` in your theme's post header (before the body tag) and ```<%- fbcomments(page.permalink) %>``` at the bottom of the post.
 4. To style the comments add something like this in your CSS
